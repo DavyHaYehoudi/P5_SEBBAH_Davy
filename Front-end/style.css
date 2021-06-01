@@ -1,0 +1,90 @@
+body{
+    font-family: roboto, sans-serif;
+}
+
+body a:link{
+    text-decoration: none;
+}
+
+header{
+    margin: 50px;
+    text-align: center;
+}
+
+.logo{
+    width: 400px;
+    cursor: pointer;
+}
+
+.panier {
+    margin: 80px auto;
+    cursor: pointer;
+    display: block;
+    font-size: 3rem;
+    border-radius: 1rem;
+    background-color: rgb(137, 137, 235);
+    opacity: 1;
+    transform: scale(1.05);
+    transition: transform 400ms;
+}
+
+.panier:hover{
+    opacity: .8;
+    transform: scale(1);
+}
+
+.accueil {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+article {
+    background-color: rgb(24, 127, 161);
+    width: 400px;
+    border: 5px rgb(24, 127, 161) solid;
+    border-radius: .5rem;
+    margin: 50px auto;
+    transition: transform 300ms;
+}
+
+article:hover{
+    transform: scale(1.05);
+}
+
+article img{
+    width: 100%;
+    max-width: 400px; 
+    max-height: 255px;
+    object-fit: cover;
+    
+}
+
+article p {
+    padding-top: 20px;
+    padding-left: 20px;
+    color: blanchedalmond;
+}
+
+h2 {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 50px;
+    background-color:rgb(24, 127, 161) ;
+    color: blanchedalmond;
+}
+
+.logo-footer{
+    width: 200px;
+    display: block;
+    margin-right: 50px;
+}
+
+
+
+
