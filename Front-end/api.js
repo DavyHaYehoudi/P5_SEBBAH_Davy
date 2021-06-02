@@ -36,7 +36,7 @@ for (let i=0; i<array.length; i++){
   document.querySelector("#accueil").innerHTML += 
 `
 
- <article>
+ <article classe="article${i}" id="article${i}">
 <h2>${array[i].name}</h2>
 <p>${(array[i].price/100)}€</p>
 <p>${array[i].description}</p>
@@ -44,8 +44,6 @@ for (let i=0; i<array.length; i++){
 </article> `
 
 }
-
-
 })
 
 .catch(function(err){
@@ -53,3 +51,17 @@ for (let i=0; i<array.length; i++){
   console.log("Une erreur est survenue");
 });
 
+
+const articleSelect = document.querySelector(`#article0`);
+  
+  articleSelect.addEventListener('click',function(){
+  
+      document.querySelector("#favoris").innerHTML +=
+  
+      ` <article classe="article0" id="article0">
+      <h2>${array[0].name}</h2>
+      <p>${(array[0].price/100)}€</p>
+      <p>${array[0].description}</p>
+       <img src="${array[0].imageUrl}">
+      </article> `
+  })

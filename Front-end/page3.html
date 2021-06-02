@@ -12,17 +12,79 @@
     <title>Orinoco-Panier</title>
 
     <script  src="api.js" defer></script>
-
+</head>
     
     <body>
         <header>
             <a href="index.html">
-              <img src="../logo_orinoco.png" alt="logo de Orinoco" class="logo">
+                <p class="banderolelogo"><img src="../logo_orinoco.png" alt="logo de Orinoco" class="logo"></p>
             </a>
+            <p class="commande">MA COMMANDE</p>
         </header>
+<main>
+        <div class="coordonnees" id="coordonnees">
+        
+            <form method="POST" action="http://localhost:3000/api/teddies">
+
+                <fieldset class="coordperso">
+                    <legend>COORDONNEES PERSONNELLES</legend>
+
+                    <label>Nom<span class="etoile">*</span></label>
+                    <input type="text" name="nom" id="nom" autofocus required>
+
+                    <label>Prénom<span class="etoile">*</span></label>
+                    <input type="text" name="prenom" id="prenom" required>
+
+                    <label>Adresse email<span class="etoile">*</span></label>
+                    <input type="email" name="email" id="email" required>
+
+                    <label>Société</label>
+                    <input type="text" name="societe" id="societe">
+
+                    <label>Adresse<span class="etoile">*</span></label>
+                    <input type="text" name="adresse" id="adresse" required>
+
+                    <label>Code postal<span class="etoile">*</span></label>
+                    <input type="tel" name="codepostal" id="codepostal" maxlength="5" required>
+
+                    <label>Ville<span class="etoile">*</span></label>
+                    <input type="text" name="ville" id="ville" required>
+
+                    <label>Téléphone</label>
+                    <input type="tel" name="telephone" id="telephone">   
+                </fieldset>
+
+            </form>
+        </div>
+
+        <div class="revision">
+            <form>
+                <fieldset class="revuearticles">
+                    <legend>REVISION DE COMMANDE</legend>
+                    <article class="revisioncommande">
+                        <label>Nom du produit</label>
+                        <input type="text" name="Nom du produit" id="Nom du produit">
+
+                        <label>Quantité</label>
+                        <input type="number" name="Quantité" id="Quantité">
+
+                        <label>Sous-Total</label>
+                        <input type="number" name="Sous-Total" id="Sous-Total">
+                    </article>
+
+                        <label for="TOTAL">TOTAL A PAYER</label>
+                        <input type="tel" name="TOTAL" id="TOTAL">
+
+                </fieldset>
+            </form>
+
+            <button type="submit" class="passercommande">PASSER LA COMMANDE</button>
+        </div>
+
+
     
-        <div class="favoris" id="favoris"></div>
-    
+        <div class="PANIER" id="PANIER"></div>
+    </main>
         <footer>
             <img src="../logo_orinoco.png" alt="logo de Orinoco" class="logo-footer">
             <p class="description">Orinoco, l'entreprise de commerce en ligne près de chez vous.</p>

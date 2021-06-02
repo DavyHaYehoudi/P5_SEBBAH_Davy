@@ -8,36 +8,44 @@ body a:link{
 
 header{
     margin: 50px;
-    text-align: center;
 }
 
 .logo{
     width: 400px;
     cursor: pointer;
+    display: block;
+    margin: auto;
 }
 
+.banderolelogo{
+    background-color:rgb(24, 127, 161) ;
+}
+/*Bouton du panier*/
 .panier {
+    font-weight: bold;
+    text-align: center;
     margin: 80px auto;
     cursor: pointer;
-    display: block;
     font-size: 3rem;
+    border: 2px rgb(24, 127, 161) solid;
     border-radius: 1rem;
-    background-color: rgb(137, 137, 235);
+    background-color: rgb(24, 127, 161);
     opacity: 1;
     transform: scale(1.05);
     transition: transform 400ms;
+    width: 300px;
 }
 
 .panier:hover{
     opacity: .8;
     transform: scale(1);
 }
-
+/*Disposition des articles*/
 .accueil {
     display: flex;
     flex-wrap: wrap;
 }
-
+/*articles des produits page accueil*/
 article {
     background-color: rgb(24, 127, 161);
     width: 400px;
@@ -55,8 +63,6 @@ article img{
     width: 100%;
     max-width: 400px; 
     max-height: 255px;
-    object-fit: cover;
-    
 }
 
 article p {
@@ -64,27 +70,90 @@ article p {
     padding-left: 20px;
     color: blanchedalmond;
 }
-
+/*Nom de l'article*/
 h2 {
     padding-top: 20px;
     padding-left: 20px;
+}
+
+/*Page du panier*/
+
+input{
+    cursor: pointer;
+    margin: 20px;
+    height: 30px;
+    font-size: 1.5rem;
+}
+
+legend{
+    font-weight: bold;
+}
+
+.commande{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    border: 2px rgb(24, 127, 161) solid;
+    border-radius: 1rem;
+}
+
+
+.coordperso{
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 50px auto;
+}
+/*disposition des articles du panier*/
+
+.revisioncommande{
+    display: flex;
+    flex-direction: column;
+}
+
+.etoile{
+    color: red;
+}
+/*somme totale à payer*/
+#TOTAL, label{
+    margin: auto;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+/*bouton de validation de commande*/
+.passercommande{
+    font-size: 2rem;
+    font-weight: bold;
+    border: 5px rgb(24, 127, 161) solid;
+    border-radius: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto;
 }
 
 footer {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 0 50px;
+    margin: 50px;
     background-color:rgb(24, 127, 161) ;
     color: blanchedalmond;
+    text-align: center;
 }
+
 
 .logo-footer{
     width: 200px;
     display: block;
-    margin-right: 50px;
+    margin: 0 50px;
 }
 
+@media screen and (max-width:1160px){
+    .logo-footer{
+        display: none;
+    }
+}
 
 
 
