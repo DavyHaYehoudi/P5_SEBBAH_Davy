@@ -4,6 +4,11 @@ body{
 
 body a:link{
     text-decoration: none;
+    color: black;
+}
+
+body a:visited {
+    color: black;
 }
 
 header{
@@ -46,7 +51,7 @@ header{
     flex-wrap: wrap;
 }
 /*articles des produits page accueil*/
-article {
+.articleAccueil{
     background-color: rgb(24, 127, 161);
     width: 400px;
     border: 5px rgb(24, 127, 161) solid;
@@ -55,28 +60,70 @@ article {
     transition: transform 300ms;
 }
 
-article:hover{
+.articleAccueil:hover{
     transform: scale(1.05);
 }
 
-article img{
+.articleAccueil img{
     width: 100%;
     max-width: 400px; 
     max-height: 255px;
 }
 
-article p {
+.articleAccueil p {
     padding-top: 20px;
     padding-left: 20px;
     color: blanchedalmond;
 }
 /*Nom de l'article*/
-h2 {
+.articleAccueil h2 {
     padding-top: 20px;
     padding-left: 20px;
 }
 
-/*Page du panier*/
+/*----------------------------Page de sélection---------------------------------------*/
+.ajouterPanier{
+    width: 50px;
+}
+
+ label {
+    text-align: inherit;
+    font-size: 2rem;
+    margin-right: 50px;
+}
+
+h3{
+    text-decoration: underline;
+    font-size: 2rem;
+}
+
+.articleSelection{
+    background-color: rgb(24, 127, 161);
+    border: 5px rgb(24, 127, 161) solid;
+    border-radius: .5rem;
+}
+
+.articleSelection img{
+    width: 100%;
+    max-width: 800px; 
+    max-height: 555px;
+    display: block;
+    margin: auto;
+}
+
+.articleSelection p{
+    color: blanchedalmond;
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 50px;
+}
+
+.articleSelection h2{
+    text-align: center;
+    font-size: 3rem;
+}
+
+/*-----------------------------Page du panier------------------------------------------*/
 
 input{
     cursor: pointer;
@@ -111,11 +158,16 @@ legend{
     flex-direction: column;
 }
 
+.revuearticles{
+    max-width: 700px;
+    margin: 50px auto;
+}
+
 .etoile{
     color: red;
 }
 /*somme totale à payer*/
-#TOTAL, label{
+ #TOTAL{
     margin: auto;
     text-align: center;
     display: block;

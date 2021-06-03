@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+
+    <title>Orinoco-Panier</title>
+
+    
+</head>
+    
+    <body>
+        <container class="conteneurpanier">
+        <header>
+            <a href="index.html">
+                <p class="banderolelogo"><img src="/logo_orinoco.png" alt="logo de Orinoco" class="logo"></p>
+            </a>
+            <p class="commande">MA COMMANDE</p>
+        </header>
+<main>
+        
+
+        <div class="revision">
+            <form>
+                <fieldset class="revuearticles">
+                    <legend>REVISION DE COMMANDE</legend>
+                    <article class="revisioncommande">
+                        <label for="nomproduit">Nom du produit</label>
+                        <input type="text" name="Nom du produit" id="Nom du produit">
+
+                        <label for="quantiteproduit">Quantité</label>
+                        <input type="number" name="Quantité" id="Quantité">
+
+                        <label for="sous-total">Sous-Total</label>
+                        <input type="number" name="Sous-Total" id="Sous-Total">
+                    </article>
+
+                        <label for="TOTAL">TOTAL A PAYER</label>
+                        <input type="tel" name="TOTAL" id="TOTAL">
+
+                </fieldset>
+            </form>
+
+            <div class="coordonnees" id="coordonnees">
+        
+                <form method="POST" action="http://localhost:3000/api/teddies">
+    
+                    <fieldset class="coordperso">
+                        <legend>COORDONNEES PERSONNELLES</legend>
+    
+                        <label for="coordonneesnom">Nom<span class="etoile">*</span></label>
+                        <input type="text" name="nom" id="nom" autofocus required>
+    
+                        <label for="coordonneesprenom">Prénom<span class="etoile">*</span></label>
+                        <input type="text" name="prenom" id="prenom" required>
+    
+                        <label for="coordonneesmail">Adresse email<span class="etoile">*</span></label>
+                        <input type="email" name="email" id="email" required>
+    
+                        <label for="societe">Société</label>
+                        <input type="text" name="societe" id="societe">
+    
+                        <label for="adresse">Adresse<span class="etoile">*</span></label>
+                        <input type="text" name="adresse" id="adresse" required>
+    
+                        <label for="codepostal">Code postal<span class="etoile">*</span></label>
+                        <input type="tel" name="codepostal" id="codepostal" maxlength="5" required>
+    
+                        <label for="ville">Ville<span class="etoile">*</span></label>
+                        <input type="text" name="ville" id="ville" required>
+    
+                        <label for="telephone">Téléphone</label>
+                        <input type="tel" name="telephone" id="telephone">   
+                    </fieldset>
+    
+                </form>
+            </div>
+
+            <button type="submit" class="passercommande">PASSER LA COMMANDE</button>
+        </div>
+
+
+    
+        <div class="PANIER" id="PANIER"></div>
+      </main>
+        <footer>
+            <img src="/logo_orinoco.png" alt="logo de Orinoco" class="logo-footer">
+            <p class="description">Orinoco, l'entreprise de commerce en ligne près de chez vous.</p>
+            <img src="/logo_orinoco.png" alt="logo de Orinoco" class="logo-footer">
+        </footer>
+
+      </container>
+     </body>
+    </html>
