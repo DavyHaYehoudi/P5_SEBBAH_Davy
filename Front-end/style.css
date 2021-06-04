@@ -16,7 +16,8 @@ header{
 }
 
 .logo{
-    width: 400px;
+    width: 40vw;
+    max-width:400px ;
     cursor: pointer;
     display: block;
     margin: auto;
@@ -26,22 +27,23 @@ header{
     background-color:rgb(24, 127, 161) ;
 }
 /*Bouton du panier*/
-.panier {
+.btn-panier {
     font-weight: bold;
     text-align: center;
     margin: 80px auto;
     cursor: pointer;
     font-size: 3rem;
-    border: 2px rgb(24, 127, 161) solid;
+    border: 5px rgb(0, 217, 255) solid;
     border-radius: 1rem;
     background-color: rgb(24, 127, 161);
     opacity: 1;
     transform: scale(1.05);
     transition: transform 400ms;
-    width: 300px;
+    width: 60vw;
+    max-width: 400px;
 }
 
-.panier:hover{
+.btn-panier:hover{
     opacity: .8;
     transform: scale(1);
 }
@@ -82,25 +84,40 @@ header{
 }
 
 /*----------------------------Page de sélection---------------------------------------*/
-.ajouterPanier{
-    width: 50px;
+.text-nombre{
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
 }
 
  label {
-    text-align: inherit;
-    font-size: 2rem;
-    margin-right: 50px;
+    font-size: 1.5rem;
 }
 
-h3{
+
+
+.articleSelection h3{
     text-decoration: underline;
-    font-size: 2rem;
+    text-align: center;
+    font-size: 1.7rem;
+    margin-top: 50px;
+}
+
+.articleSelection {
+    word-wrap: break-word;}
+
+.couleurs{
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .articleSelection{
     background-color: rgb(24, 127, 161);
     border: 5px rgb(24, 127, 161) solid;
-    border-radius: .5rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius :.5rem;
+    width: 60%;
+    margin: auto;
 }
 
 .articleSelection img{
@@ -123,9 +140,39 @@ h3{
     font-size: 3rem;
 }
 
+.conteneurselection .compteur{
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    font-size: 2rem;
+    width: 50px;
+}
+/*Bouton d'ajout de l'article au panier */
+.btn-ajouterPanier{
+    text-align: center;
+    font-size: 2.5rem;
+    border: 6px rgb(0, 217, 255) solid;
+    background-color: thistle;
+    width: 60%;
+    margin:auto;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 400ms;
+}
+
+.btn-ajouterPanier:hover{
+    transform: scale(1.01);
+    opacity: .8;  
+}
+
+
+
 /*-----------------------------Page du panier------------------------------------------*/
 
-input{
+.conteneurpanier input{
     cursor: pointer;
     margin: 20px;
     height: 30px;
