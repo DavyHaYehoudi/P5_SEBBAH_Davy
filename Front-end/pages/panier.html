@@ -11,7 +11,7 @@
 
     <title>Orinoco-Panier</title>
 
-    <script src="/scriptsJs/panier.js"></script>
+    
     
 </head>
     
@@ -24,28 +24,11 @@
             <p class="commande">MA COMMANDE</p>
         </header>
 <main>
-        
 
-        <div class="revision">
-            <form>
-                <fieldset class="revuearticles">
-                    <legend>REVISION DE COMMANDE</legend>
-                    <article class="revisioncommande">
-                        <label for="nomproduit">Nom du produit</label>
-                        <input type="text" name="Nom du produit" id="Nom du produit">
+        <div class="revision" id="revision">
 
-                        <label for="quantiteproduit">Quantité</label>
-                        <input type="number" name="Quantité" id="Quantité">
-
-                        <label for="sous-total">Sous-Total</label>
-                        <input type="number" name="Sous-Total" id="Sous-Total">
-                    </article>
-
-                        <label for="TOTAL">TOTAL A PAYER</label>
-                        <input type="tel" name="TOTAL" id="TOTAL">
-
-                </fieldset>
-            </form>
+        </div>
+           
 
             <div class="coordonnees" id="coordonnees">
         
@@ -83,9 +66,7 @@
             </div>
 
             <button type="submit" class="passercommande">PASSER LA COMMANDE</button>
-        </div>
-
-        <div id="test"></div>
+        
 
       </main>
         <footer>
@@ -95,5 +76,6 @@
         </footer>
 
       </container>
+      <script src="/scriptsJs/panier.js"></script>
      </body>
     </html>
