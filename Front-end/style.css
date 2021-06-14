@@ -174,8 +174,7 @@ header{
 
 /*-----------------------------Page du panier------------------------------------------*/
 
-.conteneurpanier input{
-    cursor: pointer;
+.conteneurpanier input{   
     margin: 20px;
     height: 30px;
     font-size: 1.5rem;
@@ -192,7 +191,6 @@ legend{
     border: 2px rgb(24, 127, 161) solid;
     border-radius: 1rem;
 }
-
 
 .coordperso{
     display: flex;
@@ -239,5 +237,38 @@ footer {
     }
 }
 
+/*Tableau récapitulatif*/
+table{
+    margin: auto;
+    text-align: center;
+    
+}
 
+ td,th {
+    border: 1px rgb(24, 127, 161) solid;
+    border-collapse: collapse;
+}
 
+/*Page de confirmation*/
+.confirmation{
+    border: 3px rgb(24, 127, 161) solid;
+    background-color: rgb(225, 204, 231);
+}
+
+.confirmation h1,h2,h3,h4{
+    text-align: center;
+    margin-top: 50px;
+}
+
+h4{
+    font-size: 3rem;
+    border: 2px rgb(24, 127, 161) solid ;
+    color: white;
+    background-color: rgb(24, 127, 161);
+    border-radius: 2rem;
+    max-width: 400px;
+    margin: 50px auto;
+}
+h4 a:visited{
+color: white;
+}

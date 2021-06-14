@@ -25,9 +25,8 @@
         </header>
 <main>
 
-        <div class="revision" id="revision">
-
-        </div>
+        <div class="revision" id="revision"></div>
+        <p class="Total" id="Total"></p>
            
 
             <div class="coordonnees" id="coordonnees">
@@ -38,7 +37,7 @@
                         <legend>COORDONNEES PERSONNELLES</legend>
     
                         <label for="coordonneesnom">Nom<span class="etoile">*</span></label>
-                        <input type="text" name="nom" id="nom" autofocus required>
+                        <input type="text" pattern="{2,}" name="nom" id="nom" autofocus required>
     
                         <label for="coordonneesprenom">Prénom<span class="etoile">*</span></label>
                         <input type="text" name="prenom" id="prenom" required>
@@ -46,26 +45,18 @@
                         <label for="coordonneesmail">Adresse email<span class="etoile">*</span></label>
                         <input type="email" name="email" id="email" required>
     
-                        <label for="societe">Société</label>
-                        <input type="text" name="societe" id="societe">
-    
                         <label for="adresse">Adresse<span class="etoile">*</span></label>
                         <input type="text" name="adresse" id="adresse" required>
     
-                        <label for="codepostal">Code postal<span class="etoile">*</span></label>
-                        <input type="tel" name="codepostal" id="codepostal" maxlength="5" required>
-    
                         <label for="ville">Ville<span class="etoile">*</span></label>
                         <input type="text" name="ville" id="ville" required>
-    
-                        <label for="telephone">Téléphone</label>
-                        <input type="tel" name="telephone" id="telephone">   
+     
                     </fieldset>
     
                 </form>
             </div>
 
-            <button type="submit" class="passercommande">PASSER LA COMMANDE</button>
+            <button type="submit" class="passercommande" id="passercommande">PASSER LA COMMANDE</button>
         
 
       </main>
