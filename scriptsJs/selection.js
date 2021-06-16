@@ -7,8 +7,7 @@ console.log(searchParams.get('id'));
 let id = searchParams.get('id');
 
 /*localstorage*/
-
-const listArticle =[];
+const listArticle = [];
 const NOM_DE_LA_CLE = "articleSelectionne";
 
 
@@ -45,32 +44,26 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
               <label for="${value.colors[i]}">${value.colors[i]}</label><br/>`
 
               }
-            
-           /*Ajout de la quantité d'articles sélectionnés*/
-            const compteur = document.getElementById('compteur');
-            compteur.addEventListener('click', function(){
-              let quantity = compteur.value;
-              donnees.quantité = quantity;
-            })
-
-           /*Données à envoyer au panier*/
-              let donnees = {
-              identifiant: value._id,
-              nom: value.name,                
-              prix: value.price/100,              
-            };
-
-            /*Si utilisateur ne clique pas dans le nombre d'article, prendre valeur par défaut*/
-            if(donnees.quantité===undefined){
-              donnees.quantité = compteur.value;
-            }
-            
+          
             /*localstorage*/
             let btnPanier = document.getElementById("btn-ajouterPanier");
-
+            
             btnPanier.addEventListener('click', function(){
+
+              let donnees = {
+                identifiant: value._id,
+                nom: value.name,                
+                prix: value.price/100,              
+              };              
+
+              const compteur = document.getElementById('compteur');
+              let quantity = compteur.value;
+              donnees.quantité = quantity;
+
+
               listArticle.push(donnees);
               let stockage = localStorage.setItem("articleSelectionne", JSON.stringify(listArticle));
+
             })
         })
         
@@ -78,6 +71,8 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
     // une erreur est survenue
     console.log(err, "Une erreur est survenue");    
   })
+
+  
 
 
 
