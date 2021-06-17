@@ -77,3 +77,25 @@ if(!(
 }
 
 // validationChamps();
+
+const btnCommande = document.querySelector("#passercommande");
+
+btnCommande.addEventListener('click', function(){
+    const nom = document.querySelector('#nom').value;
+    const prenom = document.querySelector('#prenom').value;
+    const mail = document.querySelector('#email').value;
+    const adresse = document.querySelector('#adresse').value;
+    const ville = document.querySelector('#ville').value;
+
+    let contact = {
+        firstName : prenom,
+        lastName : nom,
+        address : adresse,
+        city : ville,
+        email : mail,
+    }
+
+    // Recupérer les identifiants de chaque article sélectionné, les placer dans un tableau et envoyer ce tableau avec un fetch pour une requête POST 
+    let produitsEnvoyes = ['sfdsqfdsq','dsfqdfqs'];
+    produitsEnvoyes.push(contact);
+})

@@ -7,7 +7,7 @@ console.log(searchParams.get('id'));
 let id = searchParams.get('id');
 
 /*localstorage*/
-const listArticle = [];
+const listArticle =  localStorage.getItem("articleSelectionne") ? JSON.parse(localStorage.getItem("articleSelectionne")): [];
 const NOM_DE_LA_CLE = "articleSelectionne";
 
 
@@ -57,16 +57,32 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
               };              
 
               const compteur = document.getElementById('compteur');
-              let quantity = compteur.value;
+              let quantity = Number(compteur.value);
               donnees.quantité = quantity;
 
+              
+              // Si redondance du même article
+              let redondance = listArticle.find(objet => objet.identifiant === donnees.identifiant)
+              if(redondance){
+                redondance.quantité +=  quantity;
+                console.log(redondance);
+                localStorage.setItem("articleSelectionne", JSON.stringify(listArticle));
+                
+                console.log(listArticle);
+              } else {
+                
+                listArticle.push(donnees);
+                localStorage.setItem("articleSelectionne", JSON.stringify(listArticle));
 
-              listArticle.push(donnees);
-              let stockage = localStorage.setItem("articleSelectionne", JSON.stringify(listArticle));
+              }
+
+
+
+              
+
 
             })
         })
-        
   .catch(function(err){
     // une erreur est survenue
     console.log(err, "Une erreur est survenue");    
