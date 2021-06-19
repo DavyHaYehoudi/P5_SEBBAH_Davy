@@ -55,7 +55,7 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
                 nom: value.name,                
                 prix: value.price/100,              
               };              
-
+              // Valeur du compteur
               const compteur = document.getElementById('compteur');
               let quantity = Number(compteur.value);
               donnees.quantité = quantity;
@@ -64,22 +64,16 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
               // Si redondance du même article
               let redondance = listArticle.find(objet => objet.identifiant === donnees.identifiant)
               if(redondance){
+
                 redondance.quantité +=  quantity;
-                console.log(redondance);
                 localStorage.setItem("articleSelectionne", JSON.stringify(listArticle));
-                
-                console.log(listArticle);
+
               } else {
                 
                 listArticle.push(donnees);
                 localStorage.setItem("articleSelectionne", JSON.stringify(listArticle));
 
               }
-
-
-
-              
-
 
             })
         })

@@ -26,18 +26,18 @@
 <main>
 
         <div class="revision" id="revision"></div>
-        <p class="Total" id="Total"></p>
+        <p class="Total" id="Total">Total Net à régler : </p>
            
 
             <div class="coordonnees" id="coordonnees">
         
-                <form method="POST" action="http://localhost:3000/api/teddies">
+                <form method="POST" action="http://localhost:3000/api/teddies/order">
     
                     <fieldset class="coordperso">
                         <legend>COORDONNEES PERSONNELLES</legend>
     
                         <label for="coordonneesnom">Nom<span class="etoile">*</span></label>
-                        <input type="text" pattern="{2,}" name="nom" id="nom" autofocus required>
+                        <input type="text" name="nom" id="nom" autofocus required>
     
                         <label for="coordonneesprenom">Prénom<span class="etoile">*</span></label>
                         <input type="text" name="prenom" id="prenom" required>

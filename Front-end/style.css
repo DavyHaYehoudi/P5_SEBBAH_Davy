@@ -241,12 +241,32 @@ footer {
 table{
     margin: auto;
     text-align: center;
-    
+    border-collapse: collapse;
 }
 
- td,th {
-    border: 1px rgb(24, 127, 161) solid;
-    border-collapse: collapse;
+ table td,th {
+    border: 2px rgb(24, 127, 161) solid;
+    width: 150px;
+    font-size: 1.5rem;
+    padding: 20px;
+}
+
+.bouton_supprimer{
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 400ms;
+}
+
+.bouton_supprimer:hover{
+    background-color: red;
+    transform: scale(1.15);
+}
+
+.Total{
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 /*Page de confirmation*/
