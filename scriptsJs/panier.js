@@ -14,6 +14,8 @@ let total = 0;
 let cumule ;
 
 
+
+
 // Calcul du total - Comment faire un cumul des totaux de la variable calculST ?
 
     const rev = document.getElementById('revision');
@@ -37,8 +39,7 @@ let cumule ;
         
         // Calcul du sous-total
         let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
-
-        
+      
         // Insertion des lignes du tableau récapitulatif des achats
         rev.innerHTML+=
         `                             
@@ -50,17 +51,14 @@ let cumule ;
                             <td>${calculST},00€<td>   
                             <button class="bouton_supprimer" id="bouton_supprimer${i}"><img src="/poubelle.svg" alt="supprimer item" title="Supprimer cette ligne d'achat"></button>                 
                         </tr>
-
                 </table>
-
-        `
+       `
             //   Calcul du total                   
             total += calculST ;
     
-}
-            let NodeTotal = document.querySelector('#Total');
-            NodeTotal.innerHTML += `${total},00€ `;
-            console.log(total)
+        }
+        let NodeTotal = document.querySelector('#Total');
+        NodeTotal.innerHTML = `Total net à régler : ${total},00€ `;
 
     
 // Suppression d'une ligne d'achat
@@ -72,6 +70,15 @@ let cumule ;
             
             nodePoubelle.addEventListener('click', function(){
             nodeLigneAchat.remove();
+
+            // Calcul du sous-total après suppression d'une ligne
+        let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
+
+         //   Calcul du total après suppression d'une ligne                  
+         total -= calculST ;
+         let NodeTotal = document.querySelector('#Total');
+         NodeTotal.innerHTML = `Total net à régler : ${total},00€`;
+
                 }
             )}
 
