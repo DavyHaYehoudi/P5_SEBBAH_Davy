@@ -171,7 +171,10 @@ btnCommande.addEventListener('click', function(){
             console.log(json);
     })
         .catch(() => {
-            alert(err, 'Une erreur vient de se produire.')
+            alert(err,'Une erreur vient de se produire.')
         })
 
 })
+
+// Affichage horaire
+const horaire =new Date();
