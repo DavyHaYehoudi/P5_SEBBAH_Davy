@@ -26,6 +26,9 @@
 <main>
 
         <div class="revision" id="revision"></div>
+
+        <div id="viderPanier"></div>
+
         <p class="Total" id="Total"></p>
            
 
@@ -34,23 +37,22 @@
                 <form method="POST" action="http://localhost:3000/api/teddies/order">
     
                     <fieldset class="coordperso">
-                        <legend>COORDONNEES PERSONNELLES</legend>
+                        <legend>COORDONNEES PERSONNELLES DE FACTURATION</legend>
     
                         <label for="coordonneesnom">Nom<span class="etoile">*</span></label>
-                        <input type="text" name="nom" id="nom" autofocus required>
+                        <input type="text" name="nom" id="nom" autofocus required pattern="[A-Z]"/>
     
                         <label for="coordonneesprenom">Prénom<span class="etoile">*</span></label>
-                        <input type="text" name="prenom" id="prenom" required>
+                        <input type="text" name="prenom" id="prenom" required />
     
                         <label for="coordonneesmail">Adresse email<span class="etoile">*</span></label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email" required />
     
                         <label for="adresse">Adresse<span class="etoile">*</span></label>
-                        <input type="text" name="adresse" id="adresse" required>
+                        <input type="text" name="adresse" id="adresse" required />
     
                         <label for="ville">Ville<span class="etoile">*</span></label>
-                        <input type="text" name="ville" id="ville" required>
-     
+                        <input type="text" name="ville" id="ville" required />    
                     </fieldset>
     
                 </form>

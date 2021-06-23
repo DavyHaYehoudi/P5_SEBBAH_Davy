@@ -273,6 +273,25 @@ table{
     text-decoration: underline;
 }
 
+#btn-empty{
+    display: block; 
+    margin: 30px auto; 
+    padding: 10px;
+    border: 2px rgb(24, 127, 161) solid;
+    border-radius: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#btn-empty:hover{
+    background-color: red;
+}
+
+.disparition{
+    display: none;
+}
+
+
 /*Page de confirmation*/
 .confirmation{
     border: 3px rgb(24, 127, 161) solid;
