@@ -25,6 +25,10 @@ header{
 
 .banderolelogo{
     background-color:rgb(24, 127, 161) ;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
 }
 /*Bouton du panier*/
 .btn-panier {
@@ -218,6 +222,10 @@ legend{
     margin: 50px auto;
 }
 
+.passercommande:hover{
+    background-color: rgb(24, 127, 161);
+}
+
 footer {
     display: flex;
     align-items: center;
@@ -291,6 +299,14 @@ table{
     display: none;
 }
 
+/* Couleurs des champs pour leur validation */
+.red{
+    background-color: red;
+}
+
+.green{
+    background-color: greenyellow;
+}
 
 /*Page de confirmation*/
 .confirmation{
@@ -303,15 +319,7 @@ table{
     margin-top: 50px;
 }
 
-h4{
-    font-size: 3rem;
-    border: 2px rgb(24, 127, 161) solid ;
-    color: white;
-    background-color: rgb(24, 127, 161);
-    border-radius: 2rem;
-    max-width: 400px;
-    margin: 50px auto;
-}
-h4 a:visited{
-color: white;
+.confirmation h1{
+    font-weight: bold;
+    text-decoration: underline;
 }
