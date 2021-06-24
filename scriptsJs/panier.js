@@ -12,62 +12,63 @@ let total = 0;
 let cumule ;
 
 // Ajout des lignes du tableau
-    const rev = document.getElementById('revision');
+ const rev = document.getElementById('revision');
 
-    rev.innerHTML =
-    `<table>
-
-    <tr>
-        <th>Nom</th>
-        <th>Prix unitaire</th>
-        <th>Quantité</th>
-        <th>Sous-total</th>
-        <th>Supprimer</th>
-    </tr>
-
-    </table>`
+ rev.innerHTML =
+        `<table>
+            <tr>
+                <th>Nom</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Sous-total</th>
+                <th>Supprimer</th>
+            </tr>
+        </table>`
     
-    for(let i = 0; i<stock.length; i++){
+ for(let i = 0; i<stock.length; i++){
         
-        // Calcul du sous-total
-        let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
-      
-        // Insertion des lignes du tableau récapitulatif des achats
-        rev.innerHTML+=
+    // Calcul du sous-total
+    let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
+
+    // Insertion des lignes du tableau récapitulatif des achats
+    rev.innerHTML+=
         `                             
-                <table>
-                        <tr class="ligneAchat${i}">
-                            <td>${stock[i].nom}</td>
-                            <td>${stock[i].prix},00€</td>
-                            <td>${stock[i].quantité}</td>
-                            <td>${calculST},00€<td>   
-                            <button class="bouton_supprimer" id="bouton_supprimer${i}"><img src="/poubelle.svg" alt="supprimer item" title="Supprimer cette ligne d'achat"></button>                 
-                        </tr>
-                </table>
+        <table>
+                <tr class="ligneAchat${i}">
+                    <td>${stock[i].nom}</td>
+                    <td>${stock[i].prix},00€</td>
+                    <td>${stock[i].quantité}</td>
+                    <td>${calculST},00€<td>   
+                    <button class="bouton_supprimer" data-index="${i}" id="bouton_supprimer${i}"><img src="/poubelle.svg" alt="supprimer item" title="Supprimer cette ligne d'achat"></button>                 
+                </tr>
+        </table>
        `  
                 
-            //   Calcul du total                   
-            total += calculST ;
+    // Calcul du total                   
+    total += calculST ;
     
         }
-        let NodeTotal = document.querySelector('#Total');
-        NodeTotal.innerHTML = `Total net à régler : ${total},00€ `;
+    let NodeTotal = document.querySelector('#Total');
+    NodeTotal.innerHTML = `Total net à régler : ${total},00€ `;
 
     
 // Suppression d'une ligne d'achat
-    
 for(let i = 0; i<stock.length; i++){
 
     const nodeLigneAchat = document.querySelector(`.ligneAchat${i}`);
     const nodePoubelle = document.querySelector(`#bouton_supprimer${i}`);
     
     nodePoubelle.addEventListener('click', function(){
-
-        nodeLigneAchat.remove();
-
+        let id = nodePoubelle.dataset.index;
+        console.log(id)
+        
+        stock.splice(id,1);
+        localStorage.setItem('articleSelectionne',JSON.stringify(stock));
+        window.location.reload()
+        
         // Calcul du sous-total après suppression d'une ligne
         let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
-
+        
         // Calcul du total après suppression d'une ligne                  
         total -= calculST ;
         let NodeTotal = document.querySelector('#Total');
@@ -78,33 +79,23 @@ for(let i = 0; i<stock.length; i++){
 
 // Apparition du bouton "Vider le panier" à partir du 1er article
 const nodeViderPanier = document.querySelector('#viderPanier');
-
-if(articlePanier.length > 0){
+console.log(stock.length);
+if(stock.length > 1){
 
     nodeViderPanier.innerHTML =`<button id="btn-empty">Vider le panier</br></br><img src="/poubelle.svg" alt="supprimer item"></button>`
+    // Vider complètement le panier
+    const nodeBtnEmpty = document.querySelector('#btn-empty');   
 
+    nodeBtnEmpty.addEventListener('click', function(){
+
+        localStorage.clear();
+        rev.innerHTML ="";
+        NodeTotal.innerHTML ="";
+        nodeViderPanier.classList.add('disparition');
+
+    })
 }
-
-// Suppresion d'un élément supprimé dans le tableau de stockage 
-// const nodeBtnDelete = document.querySelector(`#bouton_supprimer`);
-
-//     nodeBtnDelete.addEventListener('click', function(){
-//     articlePanier.splice(0,1);
-// })
-
-// Vider complètement le panier
-const nodeBtnEmpty = document.querySelector('#btn-empty');   
-
-nodeBtnEmpty.addEventListener('click', function(){
-
-    localStorage.clear();
-    rev.innerHTML ="";
-    NodeTotal.innerHTML ="";
-    nodeViderPanier.classList.add('disparition');
-
-})
-
-           
+          
 // Obligations des champs
 function validationChamps (){
     const nom = document.querySelector('#nom').value;
@@ -115,22 +106,24 @@ function validationChamps (){
     const mailReg = 
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 
-if(!(
-    nom.length > 1 
-    && prenom.length > 1
-    && mailReg.test(mail)
-    && adresse.length > 6
-    && ville.length > 1
-)){
-    alert('Les champs ne sont pas correctement renseignés')
-    return
-}
+    if(!(
+        nom.length > 1 
+        && prenom.length > 1
+        && mailReg.test(mail)
+        && adresse.length > 6
+        && ville.length > 1
+    )){
+        alert('Les champs ne sont pas correctement renseignés')
+        return
+    }
 }
 
 // Valider la commande finale
 const btnCommande = document.querySelector("#passercommande");
 
-btnCommande.addEventListener('click', function(){
+btnCommande.addEventListener('click', function(e){
+    e.preventDefault();
+    validationChamps();
 
     const nom = document.querySelector('#nom').value;
     const prenom = document.querySelector('#prenom').value;
@@ -148,20 +141,21 @@ btnCommande.addEventListener('click', function(){
     };
 
     console.log(contact);
-    validationChamps();
 
     // Recupérer les identifiants de chaque article sélectionné 
     let produitsEnvoyes =[];
     for(let i = 0; i < stock.length; i++){
 
-    let produitsEnvoyes = [`${stock[i].identifiant}`];
-        console.log(produitsEnvoyes);
+        produitsEnvoyes.push(stock[i].identifiant);
     }
+    console.log(produitsEnvoyes);
+
+    let requeteData = {contact: contact,products: produitsEnvoyes}
 
     // fetch pour une requête POST 
-    const requetePost = {
+    let requetePost = {
         method : 'POST',
-        body : JSON.stringify(contact, produitsEnvoyes),
+        body : JSON.stringify(requeteData),
         headers : { 'Content-Type' : 'application/json'},
     }
 
@@ -169,6 +163,8 @@ btnCommande.addEventListener('click', function(){
         .then((res) => res.json())
         .then((json) => {
             console.log(json);
+
+            window.location.href = `../pages/confirmation.html?orderId=${json.orderId}`
     })
         .catch(() => {
             alert(err,'Une erreur vient de se produire.')
