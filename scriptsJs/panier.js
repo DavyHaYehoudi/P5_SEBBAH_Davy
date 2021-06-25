@@ -64,8 +64,8 @@ for(let i = 0; i<stock.length; i++){
         
         stock.splice(id,1);
         localStorage.setItem('articleSelectionne',JSON.stringify(stock));
-        window.location.reload()
-        
+        window.location.reload();
+
         // Calcul du sous-total après suppression d'une ligne
         let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
         
@@ -77,9 +77,9 @@ for(let i = 0; i<stock.length; i++){
     }
 )}
 
-// Apparition du bouton "Vider le panier" à partir du 1er article
+// Apparition du bouton "Vider le panier" à partir du 2ème article
 const nodeViderPanier = document.querySelector('#viderPanier');
-console.log(stock.length);
+
 if(stock.length > 1){
 
     nodeViderPanier.innerHTML =`<button id="btn-empty">Vider le panier</br></br><img src="/poubelle.svg" alt="supprimer item"></button>`
@@ -97,40 +97,43 @@ if(stock.length > 1){
 }
           
 // Obligations des champs
+
 function validationChamps (){
-    const nom = document.querySelector('#nom').value;
-    const prenom = document.querySelector('#prenom').value;
-    const mail = document.querySelector('#email').value;
-    const adresse = document.querySelector('#adresse').value;
-    const ville = document.querySelector('#ville').value;
-    const mailReg = 
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+const nom = document.querySelector('#nom').value;
+const prenom = document.querySelector('#prenom').value;
+const mail = document.querySelector('#email').value;
+const adresse = document.querySelector('#adresse').value;
+const ville = document.querySelector('#ville').value;
+const mailReg = 
+/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 
     if(!(
         nom.length > 1 
         && prenom.length > 1
         && mailReg.test(mail)
         && adresse.length > 6
-        && ville.length > 1
-    )){
-        alert('Les champs ne sont pas correctement renseignés')
-        return
-    }
+        && ville.length > 1)){
+            alert("Les champs ne sont pas correctement remplis. Les nom, prenom et ville doivent contenir au moins deux caractères. L'adresse doit contenir au moins 6 caractères."          
+            )          
+        }  
 }
+
 
 // Valider la commande finale
 const btnCommande = document.querySelector("#passercommande");
+const formulaire = document.querySelector("form");
 
-btnCommande.addEventListener('click', function(e){
-    e.preventDefault();
+formulaire.addEventListener('submit', function(e){
+const nom = document.querySelector('#nom').value;
+const prenom = document.querySelector('#prenom').value;
+const mail = document.querySelector('#email').value;
+const adresse = document.querySelector('#adresse').value;
+const ville = document.querySelector('#ville').value;
+const mailReg = 
+/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+
     validationChamps();
-
-    const nom = document.querySelector('#nom').value;
-    const prenom = document.querySelector('#prenom').value;
-    const mail = document.querySelector('#email').value;
-    const adresse = document.querySelector('#adresse').value;
-    const ville = document.querySelector('#ville').value;
-
+    e.preventDefault();
 
     const contact = {
         firstName : prenom,
@@ -159,18 +162,22 @@ btnCommande.addEventListener('click', function(e){
         headers : { 'Content-Type' : 'application/json'},
     }
 
-    fetch("http://localhost:3000/api/teddies/order", requetePost)
-        .then((res) => res.json())
-        .then((json) => {
-            console.log(json);
-
-            window.location.href = `../pages/confirmation.html?orderId=${json.orderId}`
-    })
-        .catch(() => {
-            alert(err,'Une erreur vient de se produire.')
-        })
+    if(
+        nom.length > 1 
+        && prenom.length > 1
+        && mailReg.test(mail)
+        && adresse.length > 6
+        && ville.length > 1){
+                     
+            fetch("http://localhost:3000/api/teddies/order", requetePost)
+                .then((res) => res.json())
+                .then((json) => {
+                    console.log(json);                   
+                    window.location.href = `../pages/confirmation.html?orderId=${json.orderId}`                       
+            })
+                .catch(() => {
+                    alert(err,'Une erreur vient de se produire.')
+            })
+        }  
 
 })
-
-// Affichage horaire
-const horaire =new Date();
