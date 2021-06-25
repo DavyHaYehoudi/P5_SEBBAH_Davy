@@ -23,7 +23,7 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
       document.querySelector("#selection").innerHTML += 
     `   <article class="articleSelection">
             <h2>${value.name}</h2>      
-            <p>${(value.price/100)},00€</p>
+            <p>Prix de l'article : ${(value.price/100)},00€</p>
             <span class="text-nombre">Nombre d'articles(s)</span>
             <input type="number" class="compteur" id="compteur" value="1" min="1">
             <p>${value.description}</p>

@@ -95,17 +95,19 @@ if(stock.length > 1){
 
     })
 }
-          
-// Obligations des champs
+        
+const formulaire = document.querySelector("form");
 
-function validationChamps (){
-const nom = document.querySelector('#nom').value;
-const prenom = document.querySelector('#prenom').value;
-const mail = document.querySelector('#email').value;
-const adresse = document.querySelector('#adresse').value;
-const ville = document.querySelector('#ville').value;
-const mailReg = 
-/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+formulaire.addEventListener('submit', function(e){
+
+    // Obligations des champs
+    const nom = document.querySelector('#nom').value;
+    const prenom = document.querySelector('#prenom').value;
+    const mail = document.querySelector('#email').value;
+    const adresse = document.querySelector('#adresse').value;
+    const ville = document.querySelector('#ville').value;
+    const mailReg = 
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 
     if(!(
         nom.length > 1 
@@ -116,23 +118,7 @@ const mailReg =
             alert("Les champs ne sont pas correctement remplis. Les nom, prenom et ville doivent contenir au moins deux caractères. L'adresse doit contenir au moins 6 caractères."          
             )          
         }  
-}
 
-
-// Valider la commande finale
-const btnCommande = document.querySelector("#passercommande");
-const formulaire = document.querySelector("form");
-
-formulaire.addEventListener('submit', function(e){
-const nom = document.querySelector('#nom').value;
-const prenom = document.querySelector('#prenom').value;
-const mail = document.querySelector('#email').value;
-const adresse = document.querySelector('#adresse').value;
-const ville = document.querySelector('#ville').value;
-const mailReg = 
-/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-
-    validationChamps();
     e.preventDefault();
 
     const contact = {
@@ -162,6 +148,7 @@ const mailReg =
         headers : { 'Content-Type' : 'application/json'},
     }
 
+    // Redirection vers la page de confirmation si le formulaire est bien rempli
     if(
         nom.length > 1 
         && prenom.length > 1
