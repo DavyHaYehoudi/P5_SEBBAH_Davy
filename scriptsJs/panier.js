@@ -48,9 +48,11 @@ let cumule ;
     total += calculST ;
     
         }
-    let NodeTotal = document.querySelector('#Total');
-    NodeTotal.innerHTML = `Total net à régler : ${total},00€ `;
+let NodeTotal = document.querySelector('#Total');
+NodeTotal.innerHTML = `Total net à régler : ${total},00€ `;
 
+// Stockage pour récupération dans la page confirmation
+localStorage.setItem("articleSelectionne", JSON.stringify(total));
     
 // Suppression d'une ligne d'achat
 for(let i = 0; i<stock.length; i++){
@@ -73,9 +75,9 @@ for(let i = 0; i<stock.length; i++){
         total -= calculST ;
         let NodeTotal = document.querySelector('#Total');
         NodeTotal.innerHTML = `Total net à régler : ${total},00€`;
-
     }
 )}
+
 
 // Apparition du bouton "Vider le panier" à partir du 2ème article
 const nodeViderPanier = document.querySelector('#viderPanier');

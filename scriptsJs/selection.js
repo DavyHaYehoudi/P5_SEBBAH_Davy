@@ -1,7 +1,7 @@
 
 // obtenir la valeur du paramètre de l'URL
 console.log(window.location.search);
-// Récupérer le ID de l'url
+// Récupérer l' ID de l'url
 let searchParams = new URLSearchParams(window.location.search);
 console.log(searchParams.get('id'));
 let id = searchParams.get('id');
@@ -45,24 +45,25 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
 
               }
           
-            /*localstorage*/
-            let btnPanier = document.getElementById("btn-ajouterPanier");
+           /*localstorage*/
+           let btnPanier = document.getElementById("btn-ajouterPanier");
             
-            btnPanier.addEventListener('click', function(){
+           btnPanier.addEventListener('click', function(){
 
               let donnees = {
                 identifiant: value._id,
                 nom: value.name,                
                 prix: value.price/100,              
-              };              
+              };      
+
               // Valeur du compteur
               const compteur = document.getElementById('compteur');
               let quantity = Number(compteur.value);
               donnees.quantité = quantity;
+             
+              // Si redondance d'un même article
+              let redondance = listArticle.find(objet => objet.identifiant === donnees.identifiant);
 
-              
-              // Si redondance du même article
-              let redondance = listArticle.find(objet => objet.identifiant === donnees.identifiant)
               if(redondance){
 
                 redondance.quantité +=  quantity;
