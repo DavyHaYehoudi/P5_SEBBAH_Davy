@@ -100,7 +100,7 @@ const formulaire = document.querySelector("form");
 formulaire.addEventListener('submit', function(e){
 
 
-    // Stockage du prix total pour récupération dans la page confirmation
+    // Stockage du prix total32w pour récupération dans la page confirmation
     articlePanier.unshift(total);
     localStorage.setItem("articleSelectionne", JSON.stringify(articlePanier));
 
@@ -113,16 +113,50 @@ formulaire.addEventListener('submit', function(e){
     const mailReg = 
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 
-    if(!(
-        nom.length > 1 
-        && prenom.length > 1
-        && mailReg.test(mail)
-        && adresse.length > 6
-        && ville.length > 1)){
-            alert("Les champs ne sont pas correctement remplis. Les nom, prenom et ville doivent contenir au moins deux caractères. L'adresse doit contenir au moins 6 caractères."          
-            )          
-        }  
+    // Alerte erreur de remplissage des champs
+    let nodeInputNom = document.querySelector("#nom");
+    let nodeInputPrenom = document.querySelector('#prenom');
+    let nodeInputMail = document.querySelector('#email');
+    let nodeInputAdresse = document.querySelector('#adresse');
+    let nodeInputVille = document.querySelector('#ville');
 
+    if(! (nom.length > 1)){
+        nodeInputNom.classList.add("red");
+        alert("Assurez-vous que le nom contient au moins 2 caractères.");
+
+    }
+    nodeInputNom.addEventListener('input',function(e){
+        let valeurChamps = e.target.value;
+        if(valeurChamps.length > 1){
+            nodeInputNom.classList.remove("red");
+            nodeInputNom.classList.add("green");
+        }if (!(valeurChamps.length > 1)){
+            nodeInputNom.classList.remove("green");
+            nodeInputNom.classList.add("red");
+        }
+})
+
+    if(! (prenom.length > 1) ){
+        nodeInputPrenom.classList.add("red");
+        alert("Assurez-vous que le prénom contient au moins 2 caractères.");
+    }
+    
+    if(! (ville.length > 1) ){
+        nodeInputVille.classList.add("red");
+        alert("Assurez-vous que le nom de la ville contient au moins 2 caractères.");
+    }
+    
+    if(! (adresse.length > 6)){
+        nodeInputAdresse.classList.add("red")
+        alert("Assurez-vous que l'adresse contient au moins 6 caractères.");
+    }
+    
+    if(! (mailReg.test(mail))){
+        nodeInputMail.classList.add("red")
+        alert("L'adresse mail n'est pas conforme.");
+    }
+
+    // Non soumission du formulaire avant vérification des données utilisateur
     e.preventDefault();
 
     const contact = {

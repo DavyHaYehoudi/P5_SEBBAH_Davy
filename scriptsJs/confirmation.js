@@ -10,6 +10,6 @@ const nodePrixFinal = document.querySelector('#confirmation h4');
 let prixFinal = localStorage.getItem('articleSelectionne');
 prixFinal = JSON.parse(prixFinal);
 
-nodePrixFinal.innerHTML += `Montant net de la transaction : ${prixFinal[0]},00€`
+nodePrixFinal.innerHTML += `MONTANT DE LA TRANSACTION : <strong>${prixFinal[0]},00€</strong>`
 
 localStorage.clear();
