@@ -30,4 +30,29 @@ function api(url){
     });
   }
 
-  
+  function colorationChamps(nodeInput,longueur) {
+    nodeInput.addEventListener('input',function(e){
+    
+        let valeurChamps = e.target.value;
+        if(valeurChamps.length > longueur){
+            nodeInput.classList.remove("red");
+            nodeInput.classList.add("green");
+        } 
+        if(!(valeurChamps.length > 1)){
+            nodeInput.classList.remove("green");
+            nodeInput.classList.add("red");
+        }    
+    })
+
+}
+
+function colorationChampsMail(nodeInput){
+    nodeInput.addEventListener('input', function(e){
+        if(mailReg.test(mail)){
+            nodeInput.classList.add("green");
+        }else{
+            nodeInput.classList.remove("green");
+            nodeInput.classList.add("red");
+        }
+    })
+}

@@ -123,19 +123,8 @@ formulaire.addEventListener('submit', function(e){
     if(! (nom.length > 1)){
         nodeInputNom.classList.add("red");
         alert("Assurez-vous que le nom contient au moins 2 caractères.");
-
     }
-    nodeInputNom.addEventListener('input',function(e){
-        let valeurChamps = e.target.value;
-        if(valeurChamps.length > 1){
-            nodeInputNom.classList.remove("red");
-            nodeInputNom.classList.add("green");
-        }if (!(valeurChamps.length > 1)){
-            nodeInputNom.classList.remove("green");
-            nodeInputNom.classList.add("red");
-        }
-})
-
+   
     if(! (prenom.length > 1) ){
         nodeInputPrenom.classList.add("red");
         alert("Assurez-vous que le prénom contient au moins 2 caractères.");
@@ -155,6 +144,12 @@ formulaire.addEventListener('submit', function(e){
         nodeInputMail.classList.add("red")
         alert("L'adresse mail n'est pas conforme.");
     }
+    // Coloration des champs si correct ou erreur de remplissage
+    colorationChamps(nodeInputNom,1);
+    colorationChamps(nodeInputPrenom,1);
+    colorationChamps(nodeInputVille,1)
+    colorationChamps(nodeInputAdresse,6);
+    // colorationChampsMail(nodeInputMail);
 
     // Non soumission du formulaire avant vérification des données utilisateur
     e.preventDefault();
