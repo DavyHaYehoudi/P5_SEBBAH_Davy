@@ -6,10 +6,5 @@ nodeConf.innerHTML+=`
 ${orderId}`
 
 // Récupération du prix total
-const nodePrixFinal = document.querySelector('#confirmation h4');
-let prixFinal = localStorage.getItem('articleSelectionne');
-prixFinal = JSON.parse(prixFinal);
+prixTotalConfirmation();
 
-nodePrixFinal.innerHTML += `MONTANT DE LA TRANSACTION : <strong>${prixFinal[0]},00€</strong>`
-
-localStorage.clear();

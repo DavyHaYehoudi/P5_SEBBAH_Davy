@@ -1,4 +1,4 @@
 
 let url = "http://localhost:3000/api/teddies";
-api(url);
+apiAccueil(url);
 

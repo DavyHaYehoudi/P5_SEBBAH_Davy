@@ -73,7 +73,7 @@ let cumule ;
             let NodeTotal = document.querySelector('#Total');
             NodeTotal.innerHTML = `Total net à régler : ${total},00€`;
         }
-        )}
+    )}
             
 
 // Apparition du bouton "Vider le panier" à partir du 2ème article
@@ -99,12 +99,7 @@ const formulaire = document.querySelector("form");
 
 formulaire.addEventListener('submit', function(e){
 
-
-    // Stockage du prix total32w pour récupération dans la page confirmation
-    articlePanier.unshift(total);
-    localStorage.setItem("articleSelectionne", JSON.stringify(articlePanier));
-
-    // Obligations des champs
+    // Valeur des champs
     const nom = document.querySelector('#nom').value;
     const prenom = document.querySelector('#prenom').value;
     const mail = document.querySelector('#email').value;
@@ -144,7 +139,7 @@ formulaire.addEventListener('submit', function(e){
         alert("L'adresse mail n'est pas conforme.");
     }
 
-    // Coloration des champs si correct ou erreur de remplissage
+    // Coloration des champs si correctement ou mal remplis
     colorationChamps(nodeInputNom,1);
     colorationChamps(nodeInputPrenom,1);
     colorationChamps(nodeInputVille,1)
@@ -188,6 +183,11 @@ formulaire.addEventListener('submit', function(e){
         && mailReg.test(mail)
         && adresse.length > 6
         && ville.length > 1){
+
+            // Localstorage du prix total pour récupération dans la page confirmation
+            articlePanier.unshift(total);
+            localStorage.setItem("articleSelectionne", JSON.stringify(articlePanier));
+
                      
             fetch("http://localhost:3000/api/teddies/order", requetePost)
                 .then((res) => res.json())

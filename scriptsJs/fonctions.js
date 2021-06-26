@@ -1,34 +1,37 @@
 
 // Api Fletch pour l'affichage des articles en page d'accueil
 
-
-function api(url){
+function apiAccueil(url){
     fetch (url)
     .then(function(res){
         if (res.ok){
         return res.json();
         }
      })
-    .then (function(value){
-         console.log(value);
-            for (let i=0; i<value.length; i++){
-        
-                document.querySelector("#accueil").innerHTML += 
-            `
-                <article class="articleAccueil">
-                    <a href="../pages/selection.html?id=${value[i]._id}">
-                        <h2>${value[i].name}</h2>
-                        <p>${(value[i].price/100)},00€</p>
-                        <p>${value[i].description}</p>
-                        <img src="${value[i].imageUrl}">
-                    </a>
-                </article> `
-            }
-    })
+     .then (function(value){
+        console.log(value);
+           for (let i=0; i<value.length; i++){
+       
+               document.querySelector("#accueil").innerHTML += 
+           `
+               <article class="articleAccueil">
+                   <a href="../pages/selection.html?id=${value[i]._id}">
+                       <h2>${value[i].name}</h2>
+                       <p>${(value[i].price/100)},00€</p>
+                       <p>${value[i].description}</p>
+                       <img src="${value[i].imageUrl}">
+                   </a>
+               </article> `
+           }
+   })
     .catch(function(err){
      console.log(err, "Une erreur est survenue");
     });
   }
+  
+    
+
+//   Coloration des champs du formulaire
 
   function colorationChamps(nodeInput,longueur) {
     nodeInput.addEventListener('input',function(e){
@@ -64,4 +67,16 @@ function colorationChampsMail(nodeInput){
             nodeInput.classList.add("red");
         }
     })
+}
+
+
+// Récupération du prix total
+function prixTotalConfirmation(){
+    const nodePrixFinal = document.querySelector('#confirmation h4');
+let prixFinal = localStorage.getItem('articleSelectionne');
+prixFinal = JSON.parse(prixFinal);
+
+nodePrixFinal.innerHTML += `MONTANT DE LA TRANSACTION : <strong>${prixFinal[0]},00€</strong>`
+
+localStorage.clear();
 }
