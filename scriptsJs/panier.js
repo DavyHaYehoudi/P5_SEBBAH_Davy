@@ -7,7 +7,7 @@ console.log(stock);
 articlePanier.push(stock);
 console.log(articlePanier);
 
-// Variables pour le calcul du total cumulé
+// Variables pour le calcul du total cumulé plus bas
 let total = 0;
 let cumule ;
 
@@ -42,42 +42,39 @@ let cumule ;
                     <button class="bouton_supprimer" data-index="${i}" id="bouton_supprimer${i}"><img src="/poubelle.svg" alt="supprimer item" title="Supprimer cette ligne d'achat"></button>                 
                 </tr>
         </table>
-       `  
-                
-    // Calcul du total                   
-    total += calculST ;
-    
-        }
-let NodeTotal = document.querySelector('#Total');
-NodeTotal.innerHTML = `Total net à régler : ${total},00€ `;
-
-// Stockage pour récupération dans la page confirmation
-localStorage.setItem("articleSelectionne", JSON.stringify(total));
-    
-// Suppression d'une ligne d'achat
-for(let i = 0; i<stock.length; i++){
-
-    const nodeLigneAchat = document.querySelector(`.ligneAchat${i}`);
-    const nodePoubelle = document.querySelector(`#bouton_supprimer${i}`);
-    
-    nodePoubelle.addEventListener('click', function(){
-        let id = nodePoubelle.dataset.index;
-        console.log(id)
+        `  
         
-        stock.splice(id,1);
-        localStorage.setItem('articleSelectionne',JSON.stringify(stock));
-        window.location.reload();
-
-        // Calcul du sous-total après suppression d'une ligne
-        let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
+        // Calcul du total                   
+        total += calculST ;
         
-        // Calcul du total après suppression d'une ligne                  
-        total -= calculST ;
-        let NodeTotal = document.querySelector('#Total');
-        NodeTotal.innerHTML = `Total net à régler : ${total},00€`;
     }
-)}
-
+    let NodeTotal = document.querySelector('#Total');
+    NodeTotal.innerHTML = `Total net à régler : ${total},00€ `;
+    
+    // Suppression d'une ligne d'achat
+    for(let i = 0; i<stock.length; i++){
+        
+        const nodeLigneAchat = document.querySelector(`.ligneAchat${i}`);
+        const nodePoubelle = document.querySelector(`#bouton_supprimer${i}`);
+        
+        nodePoubelle.addEventListener('click', function(){
+            let id = nodePoubelle.dataset.index;
+            console.log(id)
+            
+            stock.splice(id,1);
+            localStorage.setItem('articleSelectionne',JSON.stringify(stock));
+            window.location.reload();
+            
+            // Calcul du sous-total après suppression d'une ligne
+            let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
+            
+            // Calcul du total après suppression d'une ligne                  
+            total -= calculST ;
+            let NodeTotal = document.querySelector('#Total');
+            NodeTotal.innerHTML = `Total net à régler : ${total},00€`;
+        }
+        )}
+            
 
 // Apparition du bouton "Vider le panier" à partir du 2ème article
 const nodeViderPanier = document.querySelector('#viderPanier');
@@ -101,6 +98,11 @@ if(stock.length > 1){
 const formulaire = document.querySelector("form");
 
 formulaire.addEventListener('submit', function(e){
+
+
+    // Stockage du prix total pour récupération dans la page confirmation
+    articlePanier.unshift(total);
+    localStorage.setItem("articleSelectionne", JSON.stringify(articlePanier));
 
     // Obligations des champs
     const nom = document.querySelector('#nom').value;

@@ -8,8 +8,8 @@ ${orderId}`
 // Récupération du prix total
 const nodePrixFinal = document.querySelector('#confirmation h4');
 let prixFinal = localStorage.getItem('articleSelectionne');
-
 prixFinal = JSON.parse(prixFinal);
-nodePrixFinal.innerHTML += `Montant net de la transaction : ${prixFinal},00€`
+
+nodePrixFinal.innerHTML += `Montant net de la transaction : ${prixFinal[0]},00€`
 
 localStorage.clear();
