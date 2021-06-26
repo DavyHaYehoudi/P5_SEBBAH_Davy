@@ -110,10 +110,9 @@ formulaire.addEventListener('submit', function(e){
     const mail = document.querySelector('#email').value;
     const adresse = document.querySelector('#adresse').value;
     const ville = document.querySelector('#ville').value;
-    const mailReg = 
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    const mailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
 
-    // Alerte erreur de remplissage des champs
+    // pop-up erreur de remplissage des champs
     let nodeInputNom = document.querySelector("#nom");
     let nodeInputPrenom = document.querySelector('#prenom');
     let nodeInputMail = document.querySelector('#email');
@@ -144,12 +143,13 @@ formulaire.addEventListener('submit', function(e){
         nodeInputMail.classList.add("red")
         alert("L'adresse mail n'est pas conforme.");
     }
+
     // Coloration des champs si correct ou erreur de remplissage
     colorationChamps(nodeInputNom,1);
     colorationChamps(nodeInputPrenom,1);
     colorationChamps(nodeInputVille,1)
     colorationChamps(nodeInputAdresse,6);
-    // colorationChampsMail(nodeInputMail);
+    colorationChampsMail(nodeInputMail);
 
     // Non soumission du formulaire avant vérification des données utilisateur
     e.preventDefault();

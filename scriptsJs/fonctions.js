@@ -38,7 +38,7 @@ function api(url){
             nodeInput.classList.remove("red");
             nodeInput.classList.add("green");
         } 
-        if(!(valeurChamps.length > 1)){
+        else{
             nodeInput.classList.remove("green");
             nodeInput.classList.add("red");
         }    
@@ -47,10 +47,19 @@ function api(url){
 }
 
 function colorationChampsMail(nodeInput){
+
+    const mail = document.querySelector('#email').value;
+    const mailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+
     nodeInput.addEventListener('input', function(e){
-        if(mailReg.test(mail)){
+
+        let valeurChampsEmail = e.target.value;
+
+        if(mailReg.test(valeurChampsEmail)){            
+            nodeInput.classList.remove("red");
             nodeInput.classList.add("green");
-        }else{
+        }
+        else{      
             nodeInput.classList.remove("green");
             nodeInput.classList.add("red");
         }
