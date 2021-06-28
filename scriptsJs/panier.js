@@ -39,11 +39,20 @@ let cumule ;
                     <td>${stock[i].prix},00€</td>
                     <td>${stock[i].quantité}</td>
                     <td>${calculST},00€<td>   
-                    <button class="bouton_supprimer" data-index="${i}" id="bouton_supprimer${i}"><img src="/poubelle.svg" alt="supprimer item" title="Supprimer cette ligne d'achat"></button>                 
+                    <button class="bouton_supprimer" data-index="${i}" id="bouton_supprimer1${i}"><img src="/poubelle.svg" alt="supprimer item" title="Supprimer cette ligne d'achat"></button>                 
                 </tr>
         </table>
-        `  
         
+        
+        <article class="responsive">
+            <p>Nom : ${stock[i].nom}</p>
+            <p>Prix unitaire : ${stock[i].prix},00€</p>
+            <p>Quantité : ${stock[i].quantité}</p>
+            <p> Sous-total : ${calculST},00€</p>
+            <button class="bouton_supprimer" data-index="${i}" id="bouton_supprimer2${i}"><img src="/poubelle.svg" alt="supprimer item" title="Supprimer cet article"></button>
+        </article>`
+        
+
         // Calcul du total                   
         total += calculST ;
         
@@ -54,8 +63,8 @@ let cumule ;
     // Suppression d'une ligne d'achat
     for(let i = 0; i<stock.length; i++){
         
-        const nodeLigneAchat = document.querySelector(`.ligneAchat${i}`);
-        const nodePoubelle = document.querySelector(`#bouton_supprimer${i}`);
+        // const nodeLigneAchat = document.querySelector(`.ligneAchat${i}`);
+        const nodePoubelle = document.querySelector(`#bouton_supprimer1${i}`);
         
         nodePoubelle.addEventListener('click', function(){
             let id = nodePoubelle.dataset.index;
@@ -73,8 +82,31 @@ let cumule ;
             let NodeTotal = document.querySelector('#Total');
             NodeTotal.innerHTML = `Total net à régler : ${total},00€`;
         }
+
     )}
+    // Suppression d'une ligne d'achat responsive
+    for(let i = 0; i<stock.length; i++){
+        
+        // const nodeLigneAchat = document.querySelector(`.ligneAchat${i}`);
+        const nodePoubelle = document.querySelector(`#bouton_supprimer2${i}`);
+        
+        nodePoubelle.addEventListener('click', function(){
+            let id = nodePoubelle.dataset.index;
+            console.log(id)
             
+            stock.splice(id,1);
+            localStorage.setItem('articleSelectionne',JSON.stringify(stock));
+            window.location.reload();
+            
+            // Calcul du sous-total après suppression d'une ligne
+            let calculST = `${stock[i].prix}` *`${stock[i].quantité}`;
+            
+            // Calcul du total après suppression d'une ligne                  
+            total -= calculST ;
+            let NodeTotal = document.querySelector('#Total');
+            NodeTotal.innerHTML = `Total net à régler : ${total},00€`;
+        })
+    }      
 
 // Apparition du bouton "Vider le panier" à partir du 2ème article
 const nodeViderPanier = document.querySelector('#viderPanier');

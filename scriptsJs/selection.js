@@ -20,7 +20,7 @@ fetch ("http://localhost:3000/api/teddies/"+ id)
   })
   .then (function(value){
     console.log(value);
-
+      
       document.querySelector("#selection").innerHTML += 
     `   <article class="articleSelection">
             <h2>${value.name}</h2>      

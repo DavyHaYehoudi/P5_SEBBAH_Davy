@@ -29,7 +29,7 @@ function apiAccueil(url){
     });
   }
   
-    
+  
 
 //   Coloration des champs du formulaire
 
@@ -80,3 +80,4 @@ nodePrixFinal.innerHTML += `MONTANT DE LA TRANSACTION : <strong>${prixFinal[0]},
 
 localStorage.clear();
 }
+
