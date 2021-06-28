@@ -40,7 +40,7 @@
                         <legend>COORDONNEES PERSONNELLES DE FACTURATION</legend>
     
                         <label for="coordonneesnom">Nom<span class="etoile">*</span></label>
-                        <input type="text" name="nom" id="nom" autofocus required pattern="[A-Z]"/>
+                        <input type="text" name="nom" id="nom" autofocus required/>
     
                         <label for="coordonneesprenom">Prénom<span class="etoile">*</span></label>
                         <input type="text" name="prenom" id="prenom" required />
@@ -55,10 +55,10 @@
                         <input type="text" name="ville" id="ville" required />    
                     </fieldset>
     
+                    <button type="submit" class="passercommande" id="passercommande">PASSER LA COMMANDE</button>
                 </form>
             </div>
 
-            <button type="submit" class="passercommande" id="passercommande">PASSER LA COMMANDE</button>
         
 
       </main>
@@ -69,6 +69,8 @@
         </footer>
 
       </container>
+
+      <script src="/scriptsJs/fonctions.js"></script>
       <script src="/scriptsJs/panier.js"></script>
      </body>
     </html>

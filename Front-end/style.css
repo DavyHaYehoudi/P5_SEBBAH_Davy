@@ -1,5 +1,7 @@
 body{
     font-family: roboto, sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 body a:link{
@@ -152,6 +154,7 @@ header{
     font-size: 2rem;
     width: 50px;
 }
+
 /*Bouton d'ajout de l'article au panier */
 .btn-ajouterPanier{
     display: block;
@@ -175,10 +178,8 @@ header{
 }
 
 .btn-ajouterPanier:active{
-background-color: blue;
+    background-color: blue;
 }
-
-
 
 /*-----------------------------Page du panier------------------------------------------*/
 
@@ -251,7 +252,8 @@ footer {
 
 /*Tableau récapitulatif*/
 table{
-    margin: auto;
+    display: flex;
+    justify-content: center;
     text-align: center;
     border-collapse: collapse;
 }
@@ -261,6 +263,7 @@ table{
     width: 150px;
     font-size: 1.5rem;
     padding: 20px;
+    
 }
 
 .bouton_supprimer{
@@ -301,11 +304,11 @@ table{
 
 /* Couleurs des champs pour leur validation */
 .red{
-    background-color: red;
+    background-color: rgb(247, 170, 170);
 }
 
 .green{
-    background-color: greenyellow;
+    background-color: rgb(210, 243, 161);
 }
 
 /*Page de confirmation*/
@@ -322,4 +325,64 @@ table{
 .confirmation h1{
     font-weight: bold;
     text-decoration: underline;
+}
+
+.confirmation h3,h4 {
+    font-size: 1.8rem;
+}
+
+/* Responsive de la page selection */
+@media screen and (max-width : 414px){
+    .articleSelection{
+        width: 95% ;
+    }
+    header{
+        margin : 0 ;
+    }
+    .btn-panier{
+        width: 80%;
+    }
+    .btn-ajouterPanier{
+        width: 98%;
+    }
+
+    footer{
+        width: 100%;
+        margin :50px 0;
+    }
+}
+
+/* Responsive de la page panier */
+
+@media screen and (max-width : 1160px){
+
+    .revision{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    table {
+        display: none;
+    }
+
+    .responsive{
+        display: flex;
+        flex-direction: column;
+        border : thick double #32a1ce;
+        margin: 20px;
+        padding: 40px;
+    }
+
+    .bouton_supprimer{
+        max-width: 50px;
+        margin: 20px auto 10px auto;
+    }
+
+}
+
+@media screen and (min-width : 1161px){
+    .responsive{
+        display: none;
+    }
 }
