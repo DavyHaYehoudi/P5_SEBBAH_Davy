@@ -1,4 +1,4 @@
-
+// Fonction de chargement des données contenues dans l'API
 appelApi(url_endpoint)
     .then(value => {
         chargerDonnees(value);

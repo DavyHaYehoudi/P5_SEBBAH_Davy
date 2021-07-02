@@ -192,7 +192,8 @@ function articleDeleteResponsive(stockage){
             const nodeBtnEmpty = document.querySelector('#btn-empty');   
         
             nodeBtnEmpty.addEventListener('click', function(){
-        
+                
+                let NodeTotal = document.querySelector('#Total');
                 localStorage.clear();
                 rev.innerHTML ="";
                 NodeTotal.innerHTML ="";
@@ -202,9 +203,54 @@ function articleDeleteResponsive(stockage){
         }
         }
 
+
+        function alertChamps(){
+
+            // // Valeur des champs
+            const nom = document.querySelector('#nom').value;
+            const prenom = document.querySelector('#prenom').value;
+            const mail = document.querySelector('#email').value;
+            const adresse = document.querySelector('#adresse').value;
+            const ville = document.querySelector('#ville').value;
+            const mailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+
+            // pop-up erreur de remplissage des champs
+            let nodeInputNom = document.querySelector("#nom");
+            let nodeInputPrenom = document.querySelector('#prenom');
+            let nodeInputMail = document.querySelector('#email');
+            let nodeInputAdresse = document.querySelector('#adresse');
+            let nodeInputVille = document.querySelector('#ville');
+
+                if(! (nom.length > 1)){
+                    nodeInputNom.classList.add("red");
+                    alert("Assurez-vous que le nom contient au moins 2 caractères.");
+                }
+                
+                if(! (prenom.length > 1) ){
+                    nodeInputPrenom.classList.add("red");
+                    alert("Assurez-vous que le prénom contient au moins 2 caractères.");
+                }
+                
+                if(! (ville.length > 1) ){
+                    nodeInputVille.classList.add("red");
+                    alert("Assurez-vous que le nom de la ville contient au moins 2 caractères.");
+                }
+                
+                if(! (adresse.length > 6)){
+                    nodeInputAdresse.classList.add("red")
+                    alert("Assurez-vous que l'adresse contient au moins 6 caractères.");
+                }
+                
+                if(! (mailReg.test(mail))){
+                    nodeInputMail.classList.add("red")
+                    alert("L'adresse mail n'est pas conforme.");
+                }
+        }
+
       
         //   Coloration des champs du formulaire    
         function colorationChamps(nodeInput,longueur) {
+
             nodeInput.addEventListener('input',function(e){
         
                 let valeurChamps = e.target.value;
@@ -221,6 +267,7 @@ function articleDeleteResponsive(stockage){
         }
         
         function colorationChampsMail(nodeInput){
+
         
             const mail = document.querySelector('#email').value;
             const mailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
@@ -239,9 +286,57 @@ function articleDeleteResponsive(stockage){
                 }
             })
         }
+        
+        // Envoi des donnees par l'API Fetch pour confirmation
+        function envoiDonnees(url){
 
-       
+            // // Valeur des champs
+            const nom = document.querySelector('#nom').value;
+            const prenom = document.querySelector('#prenom').value;
+            const mail = document.querySelector('#email').value;
+            const adresse = document.querySelector('#adresse').value;
+            const ville = document.querySelector('#ville').value;
+            const mailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
 
+            const contact = {
+                firstName : prenom,
+                lastName : nom,
+                address : adresse,
+                city : ville,
+                email : mail,
+            };
+        
+            console.log(contact);
+        
+            // Recupérer les identifiants de chaque article sélectionné 
+            let produitsEnvoyes =[];
+            for(let i = 0; i < stock.length; i++){
+        
+                produitsEnvoyes.push(stock[i].identifiant);
+            }
+            console.log(produitsEnvoyes);
+        
+            let requeteData = {contact: contact,products: produitsEnvoyes}
+            
+        
+            // fetch pour une requête POST 
+            let requetePost = {
+                method : 'POST',
+                body : JSON.stringify(requeteData),
+                headers : { 'Content-Type' : 'application/json'},
+            }
+        
+            fetch(url + "order", requetePost)
+            .then((res) => res.json())
+            .then((json) => {
+                console.log(json);                   
+                window.location.href = `../pages/confirmation.html?orderId=${json.orderId}`                       
+            })
+            .catch(() => {
+                alert(err,'Une erreur vient de se produire.')
+            })
+        
+        }
 
 // --------------------------------------PAGE 4 CONFIRMATION-------------------------------------------
 

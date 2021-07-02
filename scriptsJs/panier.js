@@ -29,7 +29,7 @@ let cumule ;
 // Présentation des prix et articles du panier dans un tableau
 tableauCalcul(stock);
     
-// Suppression d'une ligne d'achat
+// Suppression d'une ligne d'achat desktop 
 articleDeleteDesktop(stock);
 
 // Suppression d'une ligne d'achat responsive
@@ -58,31 +58,8 @@ formulaire.addEventListener('submit', function(e){
     let nodeInputAdresse = document.querySelector('#adresse');
     let nodeInputVille = document.querySelector('#ville');
     
-    if(! (nom.length > 1)){
-        nodeInputNom.classList.add("red");
-        alert("Assurez-vous que le nom contient au moins 2 caractères.");
-    }
-    
-    if(! (prenom.length > 1) ){
-        nodeInputPrenom.classList.add("red");
-        alert("Assurez-vous que le prénom contient au moins 2 caractères.");
-    }
-    
-    if(! (ville.length > 1) ){
-        nodeInputVille.classList.add("red");
-        alert("Assurez-vous que le nom de la ville contient au moins 2 caractères.");
-    }
-    
-    if(! (adresse.length > 6)){
-        nodeInputAdresse.classList.add("red")
-        alert("Assurez-vous que l'adresse contient au moins 6 caractères.");
-    }
-    
-    if(! (mailReg.test(mail))){
-        nodeInputMail.classList.add("red")
-        alert("L'adresse mail n'est pas conforme.");
-    }
-    
+    // Non soumission du formulaire avant vérification des données utilisateur
+    e.preventDefault();
     
     // Coloration des champs si correctement ou mal remplis
     colorationChamps(nodeInputNom,1);
@@ -91,37 +68,9 @@ formulaire.addEventListener('submit', function(e){
     colorationChamps(nodeInputAdresse,6);
     colorationChampsMail(nodeInputMail);
     
-    // Non soumission du formulaire avant vérification des données utilisateur
-    e.preventDefault();
+    // Pop-up d'alerte pour les champs ne respectant pas les conditions
+    alertChamps();
     
-
-    const contact = {
-        firstName : prenom,
-        lastName : nom,
-        address : adresse,
-        city : ville,
-        email : mail,
-    };
-
-    console.log(contact);
-
-    // Recupérer les identifiants de chaque article sélectionné 
-    let produitsEnvoyes =[];
-    for(let i = 0; i < stock.length; i++){
-
-        produitsEnvoyes.push(stock[i].identifiant);
-    }
-    console.log(produitsEnvoyes);
-
-    let requeteData = {contact: contact,products: produitsEnvoyes}
-
-    // fetch pour une requête POST 
-    let requetePost = {
-        method : 'POST',
-        body : JSON.stringify(requeteData),
-        headers : { 'Content-Type' : 'application/json'},
-    }
-
     // Redirection vers la page de confirmation si le formulaire est bien rempli
     if(
         nom.length > 1 
@@ -129,22 +78,15 @@ formulaire.addEventListener('submit', function(e){
         && mailReg.test(mail)
         && adresse.length > 6
         && ville.length > 1){
-
+ 
             // Localstorage du prix total pour récupération dans la page confirmation
             articlePanier.unshift(total);
             localStorage.setItem("articleSelectionne", JSON.stringify(articlePanier));
 
-                     
-            fetch("http://localhost:3000/api/teddies/order", requetePost)
-                .then((res) => res.json())
-                .then((json) => {
-                    console.log(json);                   
-                    window.location.href = `../pages/confirmation.html?orderId=${json.orderId}`                       
-            })
-                .catch(() => {
-                    alert(err,'Une erreur vient de se produire.')
-            })
-        }  
+            // Envoi des donnees par l'API Fetch pour confirmation
+                envoiDonnees(url_endpoint);
+
+        }
 
 })
 
