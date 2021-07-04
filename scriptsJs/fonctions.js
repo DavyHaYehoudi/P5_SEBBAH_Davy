@@ -203,7 +203,7 @@ function articleDeleteResponsive(stockage){
         }
         }
 
-
+        // Conditions du formulaire
         function alertChamps(){
 
             // // Valeur des champs
